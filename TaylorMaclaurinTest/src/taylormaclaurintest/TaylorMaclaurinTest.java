@@ -1,15 +1,27 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Patryk Dróżdż
+ *
+ * Copyright (c) Patryk Dróżdż, this software is for anyone
+ * 
+ * In this program author tried to solve the problem of implementing 
+ * the Taylor and Maclaurin Theorms. In the output we can see the reult of
+ * counting thes Theorms. In Taylor thread We use Random double number.
+ * Author also needed to use the HashMap. The HashMap returns the sign of
+ * in Taylor's Theorm. It also throws exception in Lagranze Form.
+ *
+ * This software should be safe for any computer
+ *
  */
 package taylormaclaurintest;
 
-/**
+/*
+ * Classname: TaylorMaclaurinTest
+ * 
+ * Copyright (c) Patryk Dróżdż, this software is for anyone
  *
- * @author Patryk
+ * Version: 1.50, 17.01.2015
+ * 
  */
-
 
 import java.util.LinkedList;
 import java.util.Random;
@@ -41,24 +53,24 @@ public class TaylorMaclaurinTest {
         pj.SetX(x);
         pj.SetZ(0.0);
         
-        System.out.println("X in Taylor: "+x);
+        System.out.println("X in Taylor: " + x);
         System.out.println("X in Maclaurin: 0");
         System.out.println();
         System.out.println();
         
-        for(int i=0; i<=3; i++) {
+        for(int i = 0; i <= 3; i++) {
             
-            if(i==0) {
+            if ( i== 0) {
                 taylor.add(dx2.FirstPart(pj.GetX()));
                 mac.add(dx2.FirstPart(pj.GetZ()));
                 
-                if(dx2.FirstPart(pj.GetX()) > 0.0){
+                if(dx2.FirstPart(pj.GetX()) > 0.0) {
                     hash.put(dx2.FirstPart(pj.GetX()), "plus");
-                } else{
+                } else{ 
                     hash.put(dx2.FirstPart(pj.GetX()), "minus");
                 }
             } 
-            if(i==1) {
+            if (i == 1) {
                 pj.SetY(i);
                 taylor.add(dx2.dx(pj.GetX())*1.0/
                         (double)fact.getFactorial(pj.GetY())); 
@@ -69,24 +81,24 @@ public class TaylorMaclaurinTest {
                         (double)fact.getFactorial(pj.GetY()) > 0.0){
                     hash.put(dx2.dx(pj.GetX())*1.0/
                         (double)fact.getFactorial(pj.GetY()), "plus");
-                } else{
+                } else {
                     hash.put(dx2.dx(pj.GetX())*1.0/
                         (double)fact.getFactorial(pj.GetY()), "minus");
                 }
                 
             }
-            if(i==2) {
+            if (i == 2) {
                 pj.SetY(i);
                 taylor.add(dx2.dx2(pj.GetX())*1.0/
                         (double)fact.getFactorial(pj.GetY()));
                 mac.add(dx2.dx2(pj.GetZ())*1.0/
                         (double)fact.getFactorial(pj.GetY()));
                 
-                if(dx2.dx2(pj.GetX())*1.0/
+                if (dx2.dx2(pj.GetX())*1.0/
                         (double)fact.getFactorial(pj.GetY()) > 0.0){
                     hash.put(dx2.dx2(pj.GetX())*1.0/
                         (double)fact.getFactorial(pj.GetY()), "plus");
-                } else{
+                } else {
                     hash.put(dx2.dx2(pj.GetX())*1.0/
                         (double)fact.getFactorial(pj.GetY()), "minus");
                 }
@@ -104,12 +116,9 @@ public class TaylorMaclaurinTest {
                 System.out.println();
                 System.out.println();
             }
-            if(i==3){
+            if (i == 3) {
                 throw new LagranzeForm();
             }
-            
         }
-         
     }
-    
 }
